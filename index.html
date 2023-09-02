@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        text-align: center;
+        padding-top: 15px;
+      }
+      table {
+        border-collapse: collapse;
+        margin: 15px auto;
+      }
+
+      td {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        text-align: center;
+      }
+
+      .display-winner {
+        margin-top: 15px;
+        font-size: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <p>CURRENT PLAYER : <span id="player"></span></p>
+    <table>
+      <tr>
+        <td id="k0" onclick="choose(0)"></td>
+        <td id="k1" onclick="choose(1)"></td>
+        <td id="k2" onclick="choose(2)"></td>
+      </tr>
+      <tr>
+        <td id="k3" onclick="choose(3)"></td>
+        <td id="k4" onclick="choose(4)"></td>
+        <td id="k5" onclick="choose(5)"></td>
+      </tr>
+      <tr>
+        <td id="k6" onclick="choose(6)"></td>
+        <td id="k7" onclick="choose(7)"></td>
+        <td id="k8" onclick="choose(8)"></td>
+      </tr>
+    </table>
+    <p class="display-winner" id="display-winner"></p>
+    <button onclick="resetGame()">Reset Game</button>
+  </body>
+  <script>
+    var player = 0;
+    var player_name = ["X", "O"];
+    // THE BOXES ARRAY
+    var boxes = ["", "", "", "", "", "", "", "", ""];
+    let cellTerisi = 0;
+    const displayWinner = document.getElementById("display-winner");
+
+    const winCondition = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    function checkWinner() {
+      for (let i = 0; i < winCondition.length; i++) {
+        const condition = winCondition[i];
+
+        const cell0 = boxes[condition[0]];
+        const cell1 = boxes[condition[1]];
+        const cell2 = boxes[condition[2]];
+
+        if (cell0 == "X" && cell1 == "X" && cell2 == "X") {
+          displayWinner.innerText = "X Win";
+        } else if (cell0 == "O" && cell1 == "O" && cell2 == "O") {
+          displayWinner.innerText = "O Win";
+        } else if (cellTerisi == 9 && displayWinner.textContent == "") {
+          displayWinner.innerText = "Draw";
+        }
+      }
+
+      document.body.appendChild(displayWinner);
+    }
+
+    function choose(box_index) {
+      const cell = document.getElementById("k" + box_index);
+
+      if (cell.textContent != "") {
+        alert("already filled");
+        return;
+      }
+      if (displayWinner.textContent !== "") {
+        alert("Game Over");
+        return;
+      }
+      if (player == 0) {
+        cell.textContent = "X";
+        player = 1;
+        cellTerisi++;
+        boxes[box_index] = "X";
+      } else {
+        cell.textContent = "O";
+        player = 0;
+        cellTerisi++;
+        boxes[box_index] = "O";
+      }
+
+      checkWinner();
+
+      document.getElementById("player").textContent = player_name[player];
+    }
+
+    function resetGame() {
+      //reset cell
+      boxes = ["", "", "", "", "", "", "", "", ""];
+      for (let i = 0; i < boxes.length; i++) {
+        const cell = document.getElementById("k" + i);
+        cell.textContent = boxes[i];
+      }
+      cellTerisi = 0;
+
+      //reset current player
+      player = 0;
+      document.getElementById("player").textContent = "X";
+
+      //reset display winner
+      displayWinner.textContent = "";
+    }
+
+    document.getElementById("player").textContent = player_name[player];
+  </script>
+</html>
