@@ -74,7 +74,7 @@
     <div class="modal fade" tabindex="-1" id="modal">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <img src="./kembang-api.gif" />
+          <img src="./img/kembang-api.gif" />
           <p class="text-center the-winner"></p>
         </div>
       </div>
@@ -82,12 +82,12 @@
 
     <div class="container">
       <div class="player">
-        <img class="upin" src="./upin.png" alt="" />
+        <img class="upin" src="./img/upin.png" alt="" />
       </div>
       <div class="game text-center">
         <div>
           CURRENT PLAYER :
-          <img class="current-player" src="./kepalaUpin.png" alt="" />
+          <img class="current-player" src="./img/kepalaUpin.png" alt="" />
         </div>
         <table class="table-bordered">
           <tr>
@@ -112,7 +112,7 @@
         </button>
       </div>
       <div class="player">
-        <img class="ipin" src="./Ipin.png" alt="" />
+        <img class="ipin" src="./img/Ipin.png" alt="" />
       </div>
     </div>
   </body>
@@ -181,19 +181,19 @@
       avatar.style.width = "50px";
 
       if (player == 0) {
-        avatar.src = "kepalaUpin.png";
+        avatar.src = "./img/kepalaUpin.png";
         cell.textContent = " ";
         cell.appendChild(avatar);
         player = 1;
-        currentPlayer.src = "kepalaIpin.png";
+        currentPlayer.src = "./img/kepalaIpin.png";
         cellTerisi++;
         boxes[box_index] = "X";
       } else {
-        avatar.src = "kepalaIpin.png";
+        avatar.src = "./img/kepalaIpin.png";
         cell.textContent = " ";
         cell.appendChild(avatar);
         player = 0;
-        currentPlayer.src = "kepalaUpin.png";
+        currentPlayer.src = "./img/kepalaUpin.png";
         cellTerisi++;
         boxes[box_index] = "O";
       }
@@ -213,7 +213,7 @@
 
       //reset current player
       player = 0;
-      currentPlayer.src = "kepalaUpin.png";
+      currentPlayer.src = "./img/kepalaUpin.png";
 
       //reset display winner
       displayWinner.textContent = "";
